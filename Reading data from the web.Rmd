@@ -32,7 +32,7 @@ options(
 ```
 
 # get the data
-```{r}
+```{r, eval = FALSE}
 url = "http://samhda.s3-us-gov-west-1.amazonaws.com/s3fs-public/field-uploads/2k15StateFiles/NSDUHsaeShortTermCHG2015.htm"
 
 drug_use_xml = read_html(url)
@@ -57,7 +57,7 @@ drug_use_xml %>%
 dot before the brackets = everything that was before the pipe now represented by the dot
 table_list is the same as .
 
-```{r}
+```{r, eval =FALSE}
 table_marj = 
   (drug_use_xml %>% html_nodes(css = "table")) %>% 
   .[[1]] %>%
@@ -83,7 +83,7 @@ hpsaga_html =
 
 ```
 
-```{r}
+```{r eval = FALSE}
 hp_movie_names =
   hpsaga_html %>% 
     html_nodes(".lister-item-header a") %>%
