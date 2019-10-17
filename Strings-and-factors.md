@@ -456,4 +456,35 @@ rest_inspec %>%
 
 <img src="Strings-and-factors_files/figure-gfm/unnamed-chunk-18-1.png" width="90%" />
 
-echo = TRUE
+``` r
+rest_inspec %>% 
+  filter(str_detect(dba, "[Pp][Ii][Zz][Zz][Aa]")) %>%
+  mutate(
+    boro = fct_infreq(boro)
+  ) %>% 
+  ggplot(aes(x = boro, fill = grade)) + 
+  geom_bar() 
+```
+
+<img src="Strings-and-factors_files/figure-gfm/unnamed-chunk-18-2.png" width="90%" />
+
+``` r
+library(viridis)
+```
+
+    ## Loading required package: viridisLite
+
+``` r
+rest_inspec %>% 
+  filter(str_detect(dba, regex("pizza", ignore_case = TRUE))) %>%
+  mutate(
+    boro = fct_infreq(boro),
+    boro = fct_recode(boro, "HipsterHQ" = "Brooklyn")) %>%
+  ggplot(aes(x = boro, fill = grade)) + 
+  geom_bar() + 
+  scale_fill_viridis(discrete = TRUE)
+```
+
+<img src="Strings-and-factors_files/figure-gfm/unnamed-chunk-18-3.png" width="90%" />
+
+ggplot will convert var to a vec and plot them in alphabetical order

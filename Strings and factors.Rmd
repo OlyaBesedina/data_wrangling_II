@@ -330,12 +330,30 @@ rest_inspec %>%
   filter(str_detect(dba, "[Pp][Ii][Zz][Zz][Aa]")) %>%
   ggplot(aes(x = boro, fill = grade)) + 
   geom_bar() 
+
+
+rest_inspec %>% 
+  filter(str_detect(dba, "[Pp][Ii][Zz][Zz][Aa]")) %>%
+  mutate(
+    boro = fct_infreq(boro)
+  ) %>% 
+  ggplot(aes(x = boro, fill = grade)) + 
+  geom_bar() 
+
+library(viridis)
+
+rest_inspec %>% 
+  filter(str_detect(dba, regex("pizza", ignore_case = TRUE))) %>%
+  mutate(
+    boro = fct_infreq(boro),
+    boro = fct_recode(boro, "HipsterHQ" = "Brooklyn")) %>%
+  ggplot(aes(x = boro, fill = grade)) + 
+  geom_bar() + 
+  scale_fill_viridis(discrete = TRUE)
 ```
 
+ggplot will convert var to a vec and plot them in alphabetical order
 
-
-
-echo = TRUE
 
 
 
