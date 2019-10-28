@@ -113,7 +113,7 @@ string_vec = c(
 # 7 followed by any 1 character and then 11. Dot is a place holder
 
 str_detect(string_vec, "7.11")
-```
+ ```
 
 
 # what if you want to detect is open sq bracket
@@ -127,8 +127,9 @@ string_vec = c(
   )
 
 # \\ indicates that this is an actual thing that i want to indicate. \\ - search for [
-# \ or [ are special char in regular expressions, So you need to indicate that this is want i am looking for
+# \ or [ are special char in regular expressions, So you need to indicate that this is want i am looking for; is the char i ma looking for
 
+str_detect(stricg_vec, pattern = "\\[")
 str_detect(string_vec, "\\[")
 
 string_vec = c(
@@ -184,9 +185,11 @@ table_marj =
   html_table() %>%
   slice(-1) %>%
   as_tibble()
-
-
 ```
+
+# Remove things from variables 
+
+Remove p-values, and state var. Can you contains with regular expressions 
 
 ```{r}
 data_marj = 
@@ -205,6 +208,16 @@ data_marj =
 
 ```
 
+sep for separation, find the open paranthesis and split there
+  
+mutate(
+    year = str_replace(year, "\\)", "")
+In the year var find closed paranthesis and replace with nothing ""
+
+
+mutate(
+    percent = str_replace(percent, "[a-c]$", ""
+In the percent variable find char a-c at the end and replace with nothing ""
 
 ```{r}
 data_marj %>%
